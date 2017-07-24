@@ -113,8 +113,16 @@ shinyServer(function(input, output,session) {
   output$textvar=renderText({
     if (input$varsel=="-"){"Selecciona una variable"}
     else {input$varsel}
-    
   })
+  
+  #label de variable
+  output$vartip=renderText({
+    if(input$varsel=="-"){"[ ]"} else {
+      loc=which(colnames(dataini)==input$varsel)
+      if(is.factor(dataini[[loc]])==TRUE){"[variable discreta]"}
+      else {"[variable continua]"}}    
+  })
+  
   
   #label de region
   output$textreg=renderText({
@@ -147,7 +155,15 @@ shinyServer(function(input, output,session) {
       
   })
   
-  
+  #label punto medio
+  output$medpoint=renderText({
+    if(input$varsel=="-"){loc=1} else {
+      loc=which(colnames(dataini)==input$varsel)}
+    
+    if(is.factor(dataini[[loc]])==FALSE){"Punto medio"}
+    else {"Punto medio no disponible para variables discretas"}
+    
+  })
   
   #----------------------------------------------------------------------
   ##            BOTONES             ##
@@ -213,7 +229,8 @@ shinyServer(function(input, output,session) {
   temaBBVA=theme(panel.background=element_blank(),
                 legend.position='bottom',axis.title.x=element_blank(),
                  axis.title.y=element_blank(),axis.ticks=element_blank(),axis.text=element_blank(),
-                 panel.grid.minor=element_blank(),panel.grid.major=element_blank())
+                 panel.grid.minor=element_blank(),panel.grid.major=element_blank(),
+                legend.key.width = unit(1.3,"cm"))
   
   
   #---------------------------------------------------------------------
@@ -224,13 +241,15 @@ shinyServer(function(input, output,session) {
     
     shinyjs::enable("export")
     mapa=graphing(dataini,input$setter,input$selCCAA,input$selprov,input$varsel,input$slidermed)
+    varused=input$varsel
+    mapa[3]=varused
     return(mapa)
   })
   
   output$plot=renderPlot({
       maparet=mapabut()
-
-      dicc=which(colnames(maparet[[2]])==input$varsel)
+      
+      dicc=which(colnames(maparet[[2]])==maparet[3])
       withProgress(message = 'Coloreando', value = 0,{
         incProgress(0.0,detail="Procesando")
       if (is.null(maparet[[1]])){}

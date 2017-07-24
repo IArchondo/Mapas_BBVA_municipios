@@ -21,30 +21,10 @@ codprov=c(0,2,3,4,1,33,5,6,7,8,48,9,10,11,39,12,13,14,15,16,20,17,18,19,21,
           45,46,47,49,50)
 names(codprov)=prov
 
-#01	AndalucÃ?a
-#02	AragÃ³n
-#03	Asturias, Principado de
-#04	Balears, Illes
-#05	Canarias
-#06	Cantabria
-#07	Castilla y LeÃ³n
-#08	Castilla - La Mancha
-#09	CataluÃ±a
-#10	Comunitat Valenciana
-#11	Extremadura
-#12	Galicia
-#13	Madrid, Comunidad de
-#14	Murcia, RegiÃ³n de
-#15	Navarra, Comunidad Foral de
-#16	PaÃ?s Vasco
-#17	Rioja, La
-#18	Ceuta
-#19	Melilla
-
+####Layout
 
 shinyUI(fluidPage(
   shinyjs::useShinyjs(),
-  #titlePanel(div("Mapas BBVA (provincias)",style="color:#006EC1")),
   titlePanel(div(img(src="logo3.png"))),
   sidebarLayout(
     sidebarPanel(
@@ -64,17 +44,21 @@ shinyUI(fluidPage(
                   tabPanel("Mapa",
                            fluidRow(column(12,br())),
                            fluidRow(column(4,strong("Variable",style="color:#006EC1")),
+                                    #column(1,br()),
                                     column(4,strong("Región",style="color:#006EC1"))),
-                           fluidRow(column(4,h4(textOutput("textvar"),style="color:#009EE5")),
+                           fluidRow(column(4,h4(textOutput("textvar"),style="color:#009EE5"),
+                                    h5(textOutput("vartip"),style="color:gray")),
                                     column(4,h4(textOutput("textreg"),style="color:#009EE5")),
-                                    column(4,disabled(actionButton("export","Exportar",width="200px",icon("print"),style="color: #fff; background-color: #337ab7; 
+                                    column(4,shinyjs::disabled(actionButton("export","Exportar",width="200px",icon("print"),style="color: #fff; background-color: #337ab7; 
                                         border-color: #2e6da4")))),
                   plotOutput("plot",height="400px"),
                             fluidRow(column(12,br())),
                             fluidRow(column(6,h4("Colores",style="color:#006EC1")),
-                                     column(6,h4("Punto medio",style="color:#006EC1"))),
-                            fluidRow(column(3,radioButtons("sel_col","",choices=c("BBVA"=0,"Personalizado"=1),selected=0)),
-                                     column(2,textInput("entmin","Min",value=""),textInput("entmax","Max",value="")),
+                                     column(6,h4(textOutput("medpoint"),style="color:#006EC1"))),
+                            fluidRow(column(3, a("Catalogo",target="_blank",
+                                                 href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf"),
+                                            radioButtons("sel_col","",choices=c("BBVA"=0,"Personalizado"=1),selected=0)),
+                                     column(2,br(),textInput("entmin","Min",value=""),textInput("entmax","Max",value="")),
                                      column(1,br()),
                                      column(6,checkboxInput("automed",label="Incluir",value=FALSE),
                                             sliderInput("slidermed",NULL,min=0,max=1,value=0.5),
