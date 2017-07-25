@@ -55,7 +55,7 @@ shinyUI(fluidPage(
                             fluidRow(column(12,br())),
                             fluidRow(column(6,h4("Colores",style="color:#006EC1")),
                                      column(6,h4(textOutput("medpoint"),style="color:#006EC1"))),
-                            fluidRow(column(3, a("Catalogo",target="_blank",
+                            fluidRow(column(3, a("Catálogo",target="_blank",
                                                  href="http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf"),
                                             radioButtons("sel_col","",choices=c("BBVA"=0,"Personalizado"=1),selected=0)),
                                      column(2,br(),textInput("entmin","Min",value=""),textInput("entmax","Max",value="")),
