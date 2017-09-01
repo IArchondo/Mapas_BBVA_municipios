@@ -2,18 +2,18 @@
 
 source("helper.R")
 
-#if (!require("pacman")) install.packages("pacman")
-#pacman::p_load("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos",
-#               "shinyjs","scales","DT","readxl")
+if (!require("pacman")) install.packages("pacman")
+pacman::p_load("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos",
+               "shinyjs","scales","DT","readxl")
 
 #list_of_packages= c("maptools","dplyr","data.table","reshape2","ggplot2",
 #                    "plyr","rgdal","rgeos","shinyjs","scales","DT","readxl")
 
 #new.packages=list_of_packages[!(list_of_packages %in% installed.packages()[,"Package"])]
-list_of_packages <- c("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos","shinyjs","scales","DT","readxl")
+#list_of_packages <- c("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos","shinyjs","scales","DT","readxl")
 
-lapply(list_of_packages, 
-       function(x) if(!require(x,character.only = TRUE)) install.packages(x))
+#lapply(list_of_packages, 
+#       function(x) if(!require(x,character.only = TRUE)) install.packages(x))
 
 #library(maptools)
 #library(dplyr)
