@@ -1,6 +1,6 @@
 #server.R
 
-source("helper.R")
+
 
 #if (!require("pacman")) install.packages("pacman")
 #pacman::p_load("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos",
@@ -15,6 +15,8 @@ list_of_packages <- c("maptools","dplyr","data.table","reshape2","ggplot2","plyr
 lapply(list_of_packages, 
        function(x) if(!require(x,character.only = TRUE)) install.packages(x))
 
+source("helper.R")              
+              
 #library(maptools)
 #library(dplyr)
 #library(data.table)
