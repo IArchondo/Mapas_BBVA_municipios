@@ -4,7 +4,7 @@ source("helper.R")
 
 #if (!require("pacman")) install.packages("pacman")
 #pacman::p_load("maptools","dplyr","data.table","reshape2","ggplot2","plyr","rgdal","rgeos",
-               "shinyjs","scales","DT","readxl")
+#               "shinyjs","scales","DT","readxl")
 
 #list_of_packages= c("maptools","dplyr","data.table","reshape2","ggplot2",
 #                    "plyr","rgdal","rgeos","shinyjs","scales","DT","readxl")
