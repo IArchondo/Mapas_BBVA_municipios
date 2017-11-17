@@ -186,7 +186,9 @@ shinyServer(function(input, output,session) {
       withProgress(message = 'Importando datos', value = 0,{
         incProgress(0.0,detail="Combinando")
       datainiprev<<-merge(dataini,datacsv(),by="CodMun",all.x=TRUE)
-      datainiprev=datainiprev[, -grep(".y", colnames(datainiprev))]
+      col.y <- grep(".y", colnames(datainiprev))
+      if (length(col.y)>=1){datainiprev=datainiprev[, -col.y]}
+      else {datainiprev=datainiprev}
       nom=colnames(datainiprev)
       nom=gsub(".x","",nom)
       colnames(datainiprev)=nom
