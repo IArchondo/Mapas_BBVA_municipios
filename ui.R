@@ -25,7 +25,8 @@ names(codprov)=prov
 
 shinyUI(fluidPage(
   shinyjs::useShinyjs(),
-   titlePanel(div("Mapas de municipios de España",h6("Ignacio Archondo Contreras")
+    titlePanel(div(h2("Mapas de municipios de España",style="color:#006EC1"),
+                 h6("Creado por Ignacio Archondo Contreras",style="color:#004481")
     #img(src="logo3.png")
   )),
   sidebarLayout(
